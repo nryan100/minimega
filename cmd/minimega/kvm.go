@@ -1334,6 +1334,9 @@ func (vm VMConfig) qemuArgs(id int, vmPath string) []string {
 	args = append(args, "-qmp")
 	args = append(args, "unix:"+filepath.Join(vmPath, "qmp")+",server=on")
 
+	args = append(args, "-monitor")
+	args = append(args, "unix:"+filepath.Join(vmPath, "hmp")+",server=on,nowait")
+
 	args = append(args, "-vga")
 	if vm.Vga == "" {
 		args = append(args, "std")
